@@ -1,0 +1,72 @@
+//源代码：test.c文件
+
+#include<stdio.h> 
+int max(int a,int b)  
+{  
+   if(a>b)   
+     return a;    
+   else   
+     return b;   
+}  
+main()  
+{  
+  int a,b,m;  
+  int max(int a,int b);  
+  printf("Pls input a,b:/n");  
+  scanf("%d,%d",&a,&b);  
+  m=max(a,b);  
+  printf("Max=%d/n",m);  
+}  
+
+ //gdb 进行调试
+ [pangdun@localhost Linux]$ gcc -g test.c -o test    <---编译并打开gdb调试选项
+ [pangdun@localhost Linux]$ gdb test         <---进行调试
+ .....    //这块是gdb的版本信息，忽略
+ (gdb) r       <---运行程序
+ Starting program: /home/pangdun/代码文件/Linux/test 
+ Pls input a,b:/n   <---提示输入两个数
+ 3,2
+ Max=3/n        <---输出最大值Max
+ 
+ (gdb) list      <---list显示部分源代码，一般显示十行，如果想显示更多，可以继续list
+1	#include<stdio.h> 
+2	int max(int a,int b)  
+3	{  
+4		 if(a>b)   
+5			return a;    
+6		  else   
+7			return b;   
+8	}  
+9	main()  
+10	{  
+   
+(gdb) list 14   <---也可以list某个数字附近的代码，比如list 14，显示第14行附近的代码
+9	main()  
+10	{  
+11		 int a,b,m;  
+12		 int max(int a,int b);  
+13		 printf("Pls input a,b:/n");  
+14		 scanf("%d,%d",&a,&b);  
+15		 m=max(a,b);  
+16		 printf("Max=%d/n",m);  
+17	} 
+(gdb) break 15    <---break 打断点，在第15行打断点
+Breakpoint 1 at 0x804845c: file test.c, line 15   <---断点后的提示信息
+(gdb) r       <---再次运行程序
+Starting program: /home/pangdun/代码文件/Linux/test 
+Pls input a,b:/n   <---输入数字
+34,23
+
+Breakpoint 1, main () at test.c:15   <---程序到了第15行停了下来
+15		 m=max(a,b);  
+(gdb) n       <---next 或 n 单步执行到第16行
+16		 printf("Max=%d/n",m);  
+ (gdb) n    <---再次next，发现程序到结尾，程序已经结束
+17	}  
+
+
+
+
+
+
+ 
