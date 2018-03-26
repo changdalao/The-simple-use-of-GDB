@@ -1,5 +1,4 @@
-//源代码：test.c文件
-
+//源代码：
 #include<stdio.h> 
 int max(int a,int b)  
 {  
@@ -14,9 +13,9 @@ main()
   int max(int a,int b);  
   printf("Pls input a,b:/n");  
   scanf("%d,%d",&a,&b);  
-  m=max(a,b);  
-  printf("Max=%d/n",m);  
-}  
+  m=max(a,b);  、
+  printf("Max=%d/n",m);  、
+}  
 
  //gdb 进行调试
  [pangdun@localhost Linux]$ gcc -g test.c -o test    <---编译并打开gdb调试选项
